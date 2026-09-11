@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>WildPeer — Coming Soon</title>
+
+    <meta
+      name="description"
+      content="WildPeer — Good things, shared. Coming soon."
+    />
+
+    <style>
+      :root {
+        --forest: #071d12;
+        --forest-light: #0d2b1b;
+        --forest-mid: #123521;
+
+        --cream: #f4f0e5;
+        --sage: #75c89b;
+        --muted: #c7ccc4;
+
+        --topo: #79c79b;
+        --border: #315b45;
+
+        --orange: #c9823e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background: var(--forest);
+        color: var(--cream);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      /* --------------------------------
+       PAGE
+    -------------------------------- */
+
+      .page {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+
+        background:
+          radial-gradient(
+            circle at 11% 17%,
+            rgba(255, 255, 255, 0.65) 0 1px,
+            transparent 1.5px
+          ),
+          radial-gradient(
+            circle at 74% 23%,
+            rgba(255, 255, 255, 0.5) 0 1px,
+            transparent 1.5px
+          ),
+          radial-gradient(
+            circle at 87% 13%,
+            rgba(255, 255, 255, 0.55) 0 1px,
+            transparent 1.5px
+          ),
+          radial-gradient(
+            circle at 32% 11%,
+            rgba(255, 255, 255, 0.35) 0 1px,
+            transparent 1.5px
+          ),
+          linear-gradient(180deg, #071b11 0%, #092116 55%, #071b12 100%);
+
+        background-size:
+          180px 150px,
+          240px 190px,
+          310px 210px,
+          270px 170px,
+          auto;
+      }
+
+      /* --------------------------------
+       MOUNTAIN BACKGROUND
+    -------------------------------- */
+
+      .page::before {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        pointer-events: none;
+
+        background:
+          linear-gradient(
+            168deg,
+            transparent 0 54%,
+            rgba(25, 59, 42, 0.42) 54% 63%,
+            transparent 63%
+          ),
+          linear-gradient(
+            192deg,
+            transparent 0 61%,
+            rgba(12, 42, 27, 0.9) 61% 76%,
+            transparent 76%
+          );
+      }
+
+      /* --------------------------------
+       NAVIGATION
+    -------------------------------- */
+
+      header {
+        position: relative;
+        z-index: 2;
+
+        height: 76px;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 6vw;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        font-size: 20px;
+        font-style: italic;
+        font-weight: bold;
+      }
+
+      /* Your PeakMark SVG */
+      .peak-mark {
+        width: 28px;
+        height: 28px;
+
+        display: block;
+      }
+
+      /* --------------------------------
+       HERO
+    -------------------------------- */
+
+      main {
+        position: relative;
+        z-index: 2;
+
+        flex: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 60px 22px 80px;
+      }
+
+      .hero {
+        max-width: 900px;
+        margin-top: -40px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+
+        border: 1px solid var(--border);
+        border-radius: 999px;
+
+        padding: 8px 15px 7px;
+
+        color: var(--sage);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 35px 0 24px;
+
+        color: var(--cream);
+
+        font-size: clamp(58px, 8vw, 112px);
+        line-height: 0.82;
+
+        font-weight: 400;
+        font-style: italic;
+
+        letter-spacing: -5px;
+      }
+
+      h1 span {
+        color: var(--sage);
+      }
+
+      .subheading {
+        max-width: 700px;
+        margin: 0 auto;
+
+        color: var(--muted);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(16px, 2vw, 21px);
+
+        line-height: 1.65;
+      }
+
+      /* --------------------------------
+       COMING SOON
+    -------------------------------- */
+
+      .coming-soon {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        min-width: 260px;
+
+        margin-top: 42px;
+        padding: 18px 34px;
+
+        border: 1px solid rgba(244, 240, 229, 0.65);
+
+        background: rgba(7, 29, 18, 0.35);
+
+        color: var(--cream);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+
+        letter-spacing: 0.5px;
+      }
+
+      /* --------------------------------
+       BOTTOM LABEL
+    -------------------------------- */
+
+      .stay-tuned {
+        margin-top: 70px;
+
+        color: var(--sage);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+
+        letter-spacing: 4px;
+      }
+
+      .stay-tuned::before {
+        content: "";
+
+        display: block;
+
+        width: 1px;
+        height: 46px;
+
+        margin: 0 auto 15px;
+
+        background: var(--sage);
+
+        opacity: 0.8;
+      }
+
+      /* --------------------------------
+       FOOTER
+    -------------------------------- */
+
+      footer {
+        position: relative;
+        z-index: 2;
+
+        min-height: 78px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 15px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.025);
+
+        color: #b8c0b8;
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+
+        text-align: center;
+      }
+
+      /* --------------------------------
+       MOBILE
+    -------------------------------- */
+
+      @media (max-width: 650px) {
+        header {
+          height: 68px;
+          padding: 0 24px;
+        }
+
+        main {
+          padding: 45px 20px 55px;
+        }
+
+        .hero {
+          margin-top: -10px;
+        }
+
+        h1 {
+          margin-top: 28px;
+          letter-spacing: -3px;
+        }
+
+        .subheading {
+          font-size: 15px;
+        }
+
+        .coming-soon {
+          margin-top: 30px;
+        }
+
+        .stay-tuned {
+          margin-top: 45px;
+        }
+
+        footer {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- ==========================
+         HEADER
+    =========================== -->
+
+      <header>
+        <div class="brand">
+          <!-- WildPeer PeakMark -->
+          <svg
+            class="peak-mark"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 28 L16 4 L30 28 Z"
+              stroke="var(--topo)"
+              stroke-width="1.5"
+            />
+
+            <path
+              d="M7 28 L16 10 L25 28 Z"
+              stroke="var(--topo)"
+              stroke-width="1.2"
+              opacity="0.75"
+            />
+
+            <path
+              d="M11 28 L16 16 L21 28 Z"
+              stroke="var(--topo)"
+              stroke-width="1"
+              opacity="0.55"
+            />
+
+            <circle cx="16" cy="4" r="1.6" fill="var(--topo)" />
+          </svg>
+
+          <span>WildPeer</span>
+        </div>
+      </header>
+
+      <!-- ==========================
+         MAIN HERO
+    =========================== -->
+
+      <main>
+        <section class="hero">
+          <div class="eyebrow">Pacific Northwest · Gear for every trail</div>
+
+          <h1>
+            Good things,<br />
+            <span>shared.</span>
+          </h1>
+
+          <p class="subheading">
+            Borrow from people you already trust. Friends, clubs, and the gear
+            to get you outside.
+          </p>
+
+          <div class="coming-soon">Coming soon</div>
+
+          <div class="stay-tuned">STAY TUNED</div>
+        </section>
+      </main>
+
+      <!-- ==========================
+         FOOTER
+    =========================== -->
+
+      <footer>WildPeer · Gear sharing for the outdoors</footer>
+    </div>
+  </body>
+</html>
