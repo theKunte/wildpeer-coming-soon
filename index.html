@@ -223,31 +223,106 @@
       }
 
       /* --------------------------------
-       COMING SOON
+       SIGNUP FORM
     -------------------------------- */
 
-      .coming-soon {
-        display: inline-flex;
+      .signup-form {
+        display: flex;
 
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
 
-        min-width: 260px;
+        gap: 10px;
 
         margin-top: 42px;
-        padding: 18px 34px;
+      }
+
+      .signup-form input[type="email"] {
+        min-width: 260px;
+
+        padding: 18px 22px;
 
         border: 1px solid rgba(244, 240, 229, 0.65);
+        border-radius: 4px;
 
         background: rgba(7, 29, 18, 0.35);
 
         color: var(--cream);
 
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
+        font-size: 16px;
+
+        outline: none;
+      }
+
+      .signup-form input[type="email"]::placeholder {
+        color: var(--muted);
+      }
+
+      .signup-form input[type="email"]:focus {
+        border-color: var(--sage);
+      }
+
+      .signup-form button {
+        padding: 18px 30px;
+
+        border: 1px solid var(--orange);
+        border-radius: 4px;
+
+        background: var(--orange);
+
+        color: var(--forest);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
         font-weight: 700;
 
         letter-spacing: 0.5px;
+
+        cursor: pointer;
+
+        transition: opacity 0.15s ease;
+      }
+
+      .signup-form button:hover {
+        opacity: 0.9;
+      }
+
+      .signup-form button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* Honeypot: invisible to sighted users and screen readers, but a
+         plain-text field bots that auto-fill every input will still find. */
+      .hp-field {
+        position: absolute;
+
+        width: 1px;
+        height: 1px;
+
+        margin: -1px;
+        padding: 0;
+
+        overflow: hidden;
+
+        clip: rect(0, 0, 0, 0);
+
+        border: 0;
+      }
+
+      .form-message {
+        min-height: 20px;
+        margin-top: 18px;
+
+        color: var(--sage);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+
+      .form-message.is-error {
+        color: #f3ad9d;
       }
 
       /* --------------------------------
@@ -334,8 +409,20 @@
           font-size: 15px;
         }
 
-        .coming-soon {
+        .signup-form {
+          flex-direction: column;
+          align-items: center;
+
           margin-top: 30px;
+        }
+
+        .signup-form input[type="email"] {
+          width: 100%;
+          min-width: 0;
+        }
+
+        .signup-form button {
+          width: 100%;
         }
 
         .stay-tuned {
@@ -409,7 +496,34 @@
             to get you outside.
           </p>
 
-          <div class="coming-soon">Coming soon</div>
+          <form class="signup-form" id="signup-form" novalidate>
+            <label for="email" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
+              Email address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+
+            <!-- Honeypot: real visitors never see this field. -->
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="hp-field"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
+            <button type="submit">Notify me</button>
+          </form>
+
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
 
           <div class="stay-tuned">STAY TUNED</div>
         </section>
@@ -421,5 +535,74 @@
 
       <footer>WildPeer · Gear sharing for the outdoors</footer>
     </div>
+
+    <script>
+      (function () {
+        // Update this once the backend is deployed (see DEPLOYMENT.md in the
+        // local-resource-sharing repo). Must be included in that backend's
+        // ALLOWED_ORIGINS for CORS to allow requests from this page.
+        var API_BASE_URL = "https://api.wildpeer.com";
+
+        var form = document.getElementById("signup-form");
+        var emailInput = document.getElementById("email");
+        var companyInput = document.getElementById("company");
+        var message = document.getElementById("form-message");
+        var button = form.querySelector("button[type=submit]");
+
+        function showMessage(text, isError) {
+          message.textContent = text;
+          message.classList.toggle("is-error", !!isError);
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var email = emailInput.value.trim();
+          if (!email) {
+            showMessage("Please enter your email.", true);
+            return;
+          }
+
+          button.disabled = true;
+          button.textContent = "Sending…";
+          showMessage("", false);
+
+          fetch(API_BASE_URL + "/api/newsletter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, company: companyInput.value }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok) {
+                form.reset();
+                showMessage(
+                  result.data.message || "You're on the list!",
+                  false,
+                );
+              } else {
+                showMessage(
+                  result.data.error || "Something went wrong. Please try again.",
+                  true,
+                );
+              }
+            })
+            .catch(function () {
+              showMessage(
+                "Couldn't reach the server. Please try again shortly.",
+                true,
+              );
+            })
+            .finally(function () {
+              button.disabled = false;
+              button.textContent = "Notify me";
+            });
+        });
+      })();
+    </script>
   </body>
 </html>
