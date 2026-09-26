@@ -367,8 +367,11 @@
         min-height: 78px;
 
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        gap: 6px;
 
         padding: 15px;
 
@@ -380,6 +383,15 @@
         font-size: 14px;
 
         text-align: center;
+      }
+
+      footer a {
+        color: var(--sage);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
       }
 
       /* --------------------------------
@@ -533,7 +545,10 @@
          FOOTER
     =========================== -->
 
-      <footer>WildPeer · Gear sharing for the outdoors</footer>
+      <footer>
+        <span>WildPeer · Gear sharing for the outdoors</span>
+        <a href="mailto:wildpeerapp@gmail.com">wildpeerapp@gmail.com</a>
+      </footer>
     </div>
 
     <script>
