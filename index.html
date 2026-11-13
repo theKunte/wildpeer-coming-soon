@@ -5,11 +5,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>WildPeer — Coming Soon</title>
+    <title>WildPeer — Borrow outdoor gear from people you trust</title>
 
     <meta
       name="description"
-      content="WildPeer — Good things, shared. Coming soon."
+      content="WildPeer helps friends, families and clubs in Washington lend each other outdoor gear. No strangers, no marketplace. Opening soon."
     />
 
     <style>
@@ -289,6 +289,8 @@
         position: relative;
         z-index: 2;
 
+        background: var(--forest);
+
         min-height: 78px;
 
         display: flex;
@@ -305,6 +307,224 @@
         font-size: 14px;
 
         text-align: center;
+      }
+
+
+      /* --------------------------------
+       WAITLIST FORM
+    -------------------------------- */
+
+      .waitlist {
+        max-width: 520px;
+        margin: 42px auto 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .waitlist-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .waitlist input[type="email"] {
+        flex: 1;
+        min-width: 0;
+        min-height: 54px;
+        padding: 0 16px;
+
+        border: 1px solid rgba(244, 240, 229, 0.4);
+        background: rgba(7, 29, 18, 0.55);
+
+        color: var(--cream);
+        font-size: 16px;
+      }
+
+      .waitlist input[type="email"]::placeholder {
+        color: rgba(199, 204, 196, 0.6);
+      }
+
+      .waitlist input[type="email"]:focus {
+        outline: none;
+        border-color: var(--sage);
+      }
+
+      .waitlist button {
+        min-height: 54px;
+        padding: 0 24px;
+
+        border: 0;
+        background: var(--orange);
+
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+
+        cursor: pointer;
+      }
+
+      .waitlist button:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+
+      .waitlist-note,
+      .waitlist-error {
+        margin: 12px 0 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .waitlist-error {
+        color: #f3b98a;
+      }
+
+      .waitlist-done {
+        margin: 42px auto 0;
+        max-width: 520px;
+        padding: 18px 22px;
+
+        border: 1px solid var(--border);
+        background: rgba(18, 53, 33, 0.7);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      /* Only a bot fills this in; people never see it. */
+      .trap {
+        display: none;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      /* --------------------------------
+       INFORMATION SECTIONS
+    -------------------------------- */
+
+      .info {
+        position: relative;
+        z-index: 2;
+
+        background: var(--forest-light);
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .info.alt {
+        background: var(--forest);
+      }
+
+      .info-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 84px 22px;
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+
+        color: var(--sage);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0 0 18px;
+
+        font-size: clamp(32px, 4.4vw, 52px);
+        line-height: 1.05;
+
+        font-weight: 400;
+        font-style: italic;
+
+        letter-spacing: -1px;
+      }
+
+      .lead {
+        max-width: 720px;
+        margin: 0;
+
+        color: var(--muted);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(16px, 1.7vw, 19px);
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+
+        margin: 44px 0 0;
+        padding: 0;
+
+        list-style: none;
+      }
+
+      .card {
+        padding: 26px 24px;
+
+        border: 1px solid var(--border);
+        background: rgba(7, 29, 18, 0.45);
+      }
+
+      .card .num {
+        display: block;
+        margin-bottom: 14px;
+
+        color: var(--sage);
+
+        font-size: 34px;
+        font-style: italic;
+        line-height: 1;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+
+        font-size: 22px;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .card p {
+        margin: 0;
+
+        color: var(--muted);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .closing {
+        text-align: center;
+      }
+
+      .closing .lead {
+        margin: 0 auto;
+      }
+
+      .to-top {
+        display: inline-block;
+        margin-top: 34px;
+        padding: 16px 30px;
+
+        background: var(--orange);
+
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
       }
 
       /* --------------------------------
@@ -344,6 +564,14 @@
 
         footer {
           font-size: 12px;
+        }
+
+        .waitlist-row {
+          flex-direction: column;
+        }
+
+        .info-inner {
+          padding: 60px 20px;
         }
       }
     </style>
@@ -405,21 +633,245 @@
           </h1>
 
           <p class="subheading">
-            Borrow from people you already trust. Friends, clubs, and the gear
-            to get you outside.
+            WildPeer helps friends, families and clubs lend each other outdoor
+            gear, and keeps track of who has what. No strangers, no
+            marketplace.
           </p>
 
-          <div class="coming-soon">Coming soon</div>
+          <!-- Shown until WAITLIST_ENDPOINT (bottom of this file) is set. -->
+          <div class="coming-soon" id="coming-soon">Coming soon</div>
 
-          <div class="stay-tuned">STAY TUNED</div>
+          <form class="waitlist" id="waitlist" hidden novalidate>
+            <div class="waitlist-row">
+              <label for="waitlist-email" class="trap">Email address</label>
+              <input
+                id="waitlist-email"
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                aria-label="Email address"
+                required
+              />
+              <button type="submit" id="waitlist-button">
+                Join the waitlist
+              </button>
+            </div>
+            <div class="trap" aria-hidden="true">
+              <label>
+                Leave this empty
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+            <p class="waitlist-note" id="waitlist-note">
+              We'll only use your email to tell you when WildPeer opens.
+            </p>
+            <p class="waitlist-error" id="waitlist-error" role="alert" hidden></p>
+          </form>
+
+          <p class="waitlist-done" id="waitlist-done" role="status" hidden>
+            <strong>You're on the list.</strong><br />
+            We'll email you when WildPeer opens.
+          </p>
+
+          <div class="stay-tuned">OPENING SOON IN WASHINGTON</div>
         </section>
       </main>
 
-      <!-- ==========================
-         FOOTER
-    =========================== -->
-
-      <footer>WildPeer · Gear sharing for the outdoors</footer>
     </div>
+
+    <!-- ==========================
+       WHAT IT IS
+  =========================== -->
+
+    <section class="info">
+      <div class="info-inner">
+        <p class="kicker">What it is</p>
+        <h2>Your friends already own the gear.</h2>
+        <p class="lead">
+          Most outdoor gear spends the year in a closet. A tent for one
+          weekend, snowshoes for one trip, skis a kid outgrows by spring.
+          WildPeer lets a group of people who know each other share what
+          they have: you list what you're happy to lend, borrow what you
+          need, and the app remembers who has what and when it's due back.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================
+       HOW IT WORKS
+  =========================== -->
+
+    <section class="info alt">
+      <div class="info-inner">
+        <p class="kicker">How it works</p>
+        <h2>Four steps, start to finish.</h2>
+        <ol class="grid">
+          <li class="card">
+            <span class="num">1</span>
+            <h3>Join a group you trust</h3>
+            <p>
+              Start a group for your friends, family or club, or get invited
+              to one. Nobody joins without an invitation.
+            </p>
+          </li>
+          <li class="card">
+            <span class="num">2</span>
+            <h3>Share your gear</h3>
+            <p>
+              Add photos and the condition of what you're willing to lend,
+              and choose which of your groups can see it.
+            </p>
+          </li>
+          <li class="card">
+            <span class="num">3</span>
+            <h3>Request and meet up</h3>
+            <p>
+              Pick your dates. The owner says yes or no, and you agree where
+              and when to hand it over.
+            </p>
+          </li>
+          <li class="card">
+            <span class="num">4</span>
+            <h3>Bring it back</h3>
+            <p>
+              Both of you confirm pickup and return, so there's a shared
+              record and nothing goes missing.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==========================
+       WHY IT'S DIFFERENT
+  =========================== -->
+
+    <section class="info">
+      <div class="info-inner">
+        <p class="kicker">Why it's different</p>
+        <h2>Built on trust, not transactions.</h2>
+        <ul class="grid">
+          <li class="card">
+            <h3>No strangers</h3>
+            <p>
+              There is no public marketplace. Only people in your groups can
+              see your gear or ask to borrow it.
+            </p>
+          </li>
+          <li class="card">
+            <h3>You stay in charge</h3>
+            <p>
+              You approve every request, and you decide what a loan costs:
+              nothing, or a coffee or a beer.
+            </p>
+          </li>
+          <li class="card">
+            <h3>Private by default</h3>
+            <p>
+              Other members see when something is due back, never who has
+              it. Your email isn't shown to the group.
+            </p>
+          </li>
+          <li class="card">
+            <h3>Made for groups</h3>
+            <p>
+              Friend circles, ski carpools, families, outing clubs. The
+              person who invites someone vouches for them.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==========================
+       CLOSING
+  =========================== -->
+
+    <section class="info alt closing">
+      <div class="info-inner">
+        <p class="kicker">Opening soon</p>
+        <h2>Starting in Washington.</h2>
+        <p class="lead">
+          WildPeer is starting with a few groups around Seattle, then
+          opening to everyone in the state.
+        </p>
+        <a class="to-top" id="closing-link" href="#waitlist" hidden>
+          Join the waitlist
+        </a>
+      </div>
+    </section>
+
+    <footer>WildPeer · Gear sharing for the outdoors</footer>
+
+    <script>
+      // Where the waitlist form sends sign-ups: the WildPeer app's public
+      // waitlist address, e.g. "https://app.wildpeer.com/api/v1/waitlist".
+      // While this is empty the page shows "Coming soon" and no form.
+      var WAITLIST_ENDPOINT = "";
+
+      (function () {
+        if (!WAITLIST_ENDPOINT) return;
+
+        var form = document.getElementById("waitlist");
+        var button = document.getElementById("waitlist-button");
+        var note = document.getElementById("waitlist-note");
+        var error = document.getElementById("waitlist-error");
+        var done = document.getElementById("waitlist-done");
+
+        document.getElementById("coming-soon").hidden = true;
+        document.getElementById("closing-link").hidden = false;
+        form.hidden = false;
+
+        function fail(message) {
+          error.textContent = message;
+          error.hidden = false;
+          note.hidden = true;
+          button.disabled = false;
+          button.textContent = "Join the waitlist";
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var email = form.elements.email.value.trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return fail("Enter a valid email address.");
+          }
+
+          error.hidden = true;
+          note.hidden = false;
+          button.disabled = true;
+          button.textContent = "Joining…";
+
+          fetch(WAITLIST_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: email,
+              source: "coming-soon",
+              website: form.elements.website.value,
+            }),
+          })
+            .then(function (response) {
+              if (response.ok) {
+                form.hidden = true;
+                done.hidden = false;
+                return;
+              }
+              return response
+                .json()
+                .catch(function () {
+                  return {};
+                })
+                .then(function (body) {
+                  fail(body.error || "Couldn't add you just now. Please try again.");
+                });
+            })
+            .catch(function () {
+              fail("Couldn't reach WildPeer just now. Please try again.");
+            });
+        });
+      })();
+    </script>
   </body>
 </html>
